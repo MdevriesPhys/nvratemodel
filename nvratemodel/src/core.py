@@ -4092,7 +4092,7 @@ def getContrastOf2pointODMRTrace(times, pls, t1, t3,
         average countrate during the tint integration windows. Else, the average
         counts per times bin.
     """
-    if type(integrationTime) is float or type(integrationTime) is np.float_:
+    if type(integrationTime) is float or type(integrationTime) is np.float64:
         return getContrastOf2pointODMRTrace_Fix(times, pls, t1, t3,
                                          integrationTime,
                                          minLaserOnTime,
@@ -4810,7 +4810,7 @@ def getContrastImproved(integrationTime, tsteps, ksteps,
     shift = 1e-16 # should be the same as the hard-coded one in makeStepsForImprovedReadInit().
     t1 = tsteps[0]-shift # t0 in makeStepsForImprovedReadInit().
     
-    if type(integrationTime) is float or type(integrationTime) is np.float_:
+    if type(integrationTime) is float or type(integrationTime) is np.float64:
         tend = t1 + integrationTime + 5*tstepsize # need to extend since t1s causes 2 laser off points in beginning and point in time at integrationTime is included.
     elif integrationTime in ('optC', 'optSens', 'optSNR'):
         tend = t1 + minLaserOnTime + 5*tstepsize # just assume that no integration window would ever be longer than minLaserOnTime.
