@@ -4186,7 +4186,7 @@ def getContrast(integrationTime, minLaserOnTime=1.5e-6, tstepsize=1e-9,
     """
     modeldict = makeModelDict(**modeldict) # generate from modeldict kwargs
     
-    if type(integrationTime) is float or type(integrationTime) is np.float_:
+    if type(integrationTime) is float or type(integrationTime) is np.float64:
         tend = integrationTime + 5*tstepsize # need to extend since t1s causes 2 laser off points in beginning and point in time at integrationTime is included.
     elif integrationTime in ('optC', 'optSens', 'optSNR'):
         tend = minLaserOnTime + 5*tstepsize # just assume that no integration window would ever be longer than minLaserOnTime.
