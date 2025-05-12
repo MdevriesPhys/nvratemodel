@@ -3,10 +3,10 @@ Updated fork of numerical rate models to simulate the photophysics of the negati
 
 What is this?
 --------------
-Fork of https://https://github.com/sernstETH/nvratemodel with numpy's depreciated ``` np.float_ ``` function being replaced with ```np.float64```.
+Fork of https://https://github.com/sernstETH/nvratemodel with NumPy's depreciated ``` np.float_ ``` function being replaced with ```np.float64```.
 
 What this library can do:
-- Everything the original library can do, but with numpy 2 compatablity. Go give the [original repo](https://github.com/sernstETH/nvratemodel) some love, and read their [paper](https://arxiv.org/abs/2304.02521) and [thesis](https://www.research-collection.ethz.ch/handle/20.500.11850/674178). Specifically:
+- Everything the original library can do, but with NumPy 2.x compatablity. Go give the [original repo](https://github.com/sernstETH/nvratemodel) some love, and read their [paper](https://arxiv.org/abs/2304.02521) and [thesis](https://www.research-collection.ethz.ch/handle/20.500.11850/674178). Specifically:
   - Simulate NV<sup>-</sup> photophysics over commonly used temperatures (cryo to room temperatures), strain & electric fields, and magnetic fields.
   - Simulate at high computational speed the NV<sup>-</sup> centre photophysics at elevated temperature (e.g. room temperature).
 
