@@ -11,7 +11,8 @@ from copy import deepcopy
 from time import strftime # used in plotRoutines.py
 from json import load, dump
 
-
+'''Changes from original (https://github.com/sernstETH/nvratemodel) work:
+MO de Vries 09/05/2025: Changed instances of np.float_ to np.float64 to ensure NumPy 2.x compatability'''
 # Configure paths for LUT and saving/loading data:
 from os.path import abspath, dirname, pardir
 from os.path import join as osjoin
