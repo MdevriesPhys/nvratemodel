@@ -1,19 +1,19 @@
 # nvratemodel
-Numerical rate models to simulate the photo-physics of the Nitrogen-Vacancy (NV) center in diamond.
+Updated fork of numerical rate models to simulate the photophysics of the negatively-charged nitrogen-vacancy (NV<sup>-</sup>) centre in diamond.
 
 What is this?
 --------------
+Fork of https://https://github.com/sernstETH/nvratemodel with numpy's depreciated ``` np.float_ ``` function being replaced with ```np.float64```.
+
 What this library can do:
-- For the first time, it is possible to simulate the NV center photo-physics over the commonly covered range of temperature (cryogenic to room temperature), strain/el. field, and magnetic field. For this, use the ```MEmodel``` (see below). The theory and details behind this model are provided in https://arxiv.org/abs/2304.02521 (compact) and https://doi.org/10.3929/ethz-b-000674178 (extended).
-- Simulate at high computational speed the NV center photo-physics at elevated temperature (e.g. room temperature). For this, use the ```HighTmodel``` (see below), which is a commonly used classical rate model. Even though this model is very common, the accessibility of simulating e.g. contrast or SNR vs. key parameters with just a few lines of code, as well as the inclusion of the "temperature reduction factor" (```highT_trf```) (see below), also make this part of the library a useful tool.
+- Everything the original library can do, but with numpy 2 compatablity. Go give the [original repo](https://github.com/sernstETH/nvratemodel) some love, and read their [paper](https://arxiv.org/abs/2304.02521) and [thesis](https://www.research-collection.ethz.ch/handle/20.500.11850/674178). Specifically:
+  - Simulate NV<sup>-</sup> photophysics over commonly used temperatures (cryo to room temperatures), strain & electric fields, and magnetic fields.
+  - Simulate at high computational speed the NV<sup>-</sup> centre photophysics at elevated temperature (e.g. room temperature).
 
-What this library cannot do (at this point):
-- Simulate quantum gates on the spin other than instantaneous pi-pulses.
-- Simulate non-classical optical processes (more see ```spinCoherentOptics``` below).
-- Include the hyperfine structure in the simulation.
-- Include the effects of strain/el. field on the ground state, and the effect of its on-axis components in general.
-
-
+What this library can't do (but hopefully will be made to do later):
+- Simulate non-classical optical processes (spin coherence, etc)
+- Simulate hyperfine structure
+- Include the effects of strain/electic field on the ground state, and the effect of its on-axis components in general.
 
 Installation
 -------------
@@ -39,24 +39,16 @@ You need to install this library into a python environment. Consider the followi
 
 - Now we install this library into the environment by:
   ```
-  pip install git+https://github.com/sernstETH/nvratemodel.git
+  pip install git+https://github.com/MdeVriesPhys/nvratemodel.git
   ```
   If you wish to uninstall it again later, use:
   ```
   pip uninstall nvratemodel
   ```
 
-You can also use binder to directly use the library online without the need of any installation:
-
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/sernstETH/nvratemodel/HEAD)
-
-But note that in its current state, it is extremely slow compared to an installation as given above, and should rather be seen as a tool to view the code.
-
-
-
 First steps
 -----------
-Check the installation in python by entering in the Anaconda Prompt from above (with ```myNVenv``` active)
+Check the installation in python by entering in the Conda prompt from above (with ```myNVenv``` active)
 ```
 python
 ```
@@ -68,7 +60,7 @@ Then, run an example
 ```
 nv.example_PRL_Fig3a.run(path=None)
 ```
-which should look like the plot in our publication https://arxiv.org/abs/2301.05091.
+which should look like the plot in Ernst et. al.'s [publication](https://arxiv.org/abs/2301.05091).
 You can further test the following examples
 ```
 example_PRB_Fig7a
@@ -76,7 +68,7 @@ example_PRB_Fig4h
 example_PRB_Fig3b
 example_PRB_Fig7b
 ```
-which should look like plots in our other, related publication https://arxiv.org/abs/2304.02521.
+which should look like plots in Ernst et. al.'s [related publication](https://arxiv.org/abs/2304.02521).
 
 The code of these examples should serve as a guide on how to use the nvratemodel library. The various plot routines readily provided by the library, as well as the formalism of ```modeldict```s (dictionaries that contain a set of NV parameters) and ```NVrateModel```s (objects to simulate the behavior of a set of NV parameters) are further explained below.
 
@@ -99,8 +91,6 @@ There are two more things to note before you get started:
   nv.updatePhononIntegralFullLUT(0.168)
   ```
   for the default Debye cutoff energy of ```phonCutoff=0.168```eV. You can also set other values of ```modeldict['phonCutoff']``` (see below) - the library will then ask you again to update the LUT with the values requested.
-
-
 
 Using modeldicts and NVrateModels
 ---------------------------------
@@ -161,8 +151,7 @@ This library has two core objects to handle simulations:
   nv.NVrateModel.propagateState
   nv.NVrateModel.calcTimeTrace
   ```
-
-
+  
 A word on computational speed and the numba package
 ----------------------------------------
 Maybe you noticed above, that calling e.g. ```nv.HighTmodel(**mymodeldict).PL()``` for the first time is dramatically slower than calling it for the second time. This is because the numba package has to translate python code to fast machine code when the required functions are called for the first time.
@@ -171,8 +160,6 @@ If you wish to disable the usage of numba, you can easily do this by setting
 NUMBA_OPT = False
 ```
 in the ```GLOBAL.py``` file located in the installed nvratemodel root directory. This might be helpful when you cannot make sense of cryptic error messages generated by numba.
-
-
 
 Overview of readily available simulation routines
 --------------------------------------------------
@@ -189,7 +176,6 @@ simulatePopTimeTrace
 fitMagnetAlignment
 ```
 Take a look at their doc strings by ```help(nv.function_name)``` to learn more about how to use them or get an idea of their output by just calling them with their defaults ```function_name()```. Just the more involved ```simulatePopTimeTrace``` function needs some arguments, of which an example can be found in ```example_PRB_Fig3b.py```.
-
 
 Programming simulations yourself
 ---------------------------------
