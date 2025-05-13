@@ -1,3 +1,5 @@
 $ cat .gitignore
 #exclude PyCharm's project stuff
 .idea/
+#exclude PyCharm caches too
+**/__pychache__/**
