@@ -1,4 +1,4 @@
 #exclude PyCharm's project stuff
 .idea/
 #exclude PyCharm caches too
-**/__pychche__/
+**/__pycache__/
